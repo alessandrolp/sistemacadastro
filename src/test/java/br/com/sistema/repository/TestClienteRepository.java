@@ -1,7 +1,5 @@
 package br.com.sistema.repository;
 
-import br.com.sistema.model.Cliente;
-import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestDatabase;
@@ -10,9 +8,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -24,8 +19,8 @@ public class TestClienteRepository {
 	
 	@Autowired
 	EntityManager entityManager;
-	
-	//@Test
+	/*
+	@Test
 	public void testSalvar(){
 	
 		Cliente cliente = new Cliente("meirieli");
@@ -34,7 +29,7 @@ public class TestClienteRepository {
 		
 	}
 
-	//@Test
+	@Test
 	public void testBuscarPorEmail(){
 		Cliente cliente = new Cliente("meirieli");
 		entityManager.persist(cliente);
@@ -44,7 +39,7 @@ public class TestClienteRepository {
 		//assertThat(cliEncontrado.getNome()).isEqualTo(cli.getNome());
 	}
 	
-	//@Test
+	@Test
 	public void testBuscarTodos(){
 		Cliente cliMeiri = new Cliente("meirieli");
 		entityManager.persist(cliMeiri);
@@ -57,6 +52,6 @@ public class TestClienteRepository {
 		assertThat(lista.get(1).getNome()).isEqualTo(cliAlessandro.getNome());
 		
 	}
-	
+	*/
 	
 }
