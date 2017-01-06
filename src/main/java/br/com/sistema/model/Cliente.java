@@ -1,8 +1,8 @@
 package br.com.sistema.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Cliente {
@@ -12,11 +12,21 @@ public class Cliente {
 	private Long id;
 	
 	private String nome; 
-	
-	public Cliente(){
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+	private List<Contato> contatos = new ArrayList<>();
+
+	public Cliente(){
 	}
-	
+
+	public List<Contato> getContatos() {
+		return contatos;
+	}
+
+	public void setContatos(List<Contato> contatos) {
+		this.contatos = contatos;
+	}
+
 	public Cliente(String nome) {
 		setNome(nome);
 	}
