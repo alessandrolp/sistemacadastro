@@ -11,12 +11,28 @@
         <h:form id="formCliente">
             Nome:
             <h:inputText value="#{clienteController.cliente.nome}"/>
+            Contato:
+            <h:inputText value="#{clienteController.contato.descricao}" id="inputContato"/>
+            <h:commandButton action="#{clienteController.adicionarContato}" value="+">
+                <f:ajax execute="inputContato" render="inputContato tableContatos"/>
+            </h:commandButton>
             <h:commandButton action="#{clienteController.salvar}" value="Salvar">
                 <f:ajax execute="formCliente" render="formCliente"/>
             </h:commandButton>
             <h:commandButton rendered="#{clienteController.modoEdicao}" action="#{clienteController.cancelar}" value="Cancelar">
                 <f:ajax render="formCliente"/>
             </h:commandButton>
+
+            <h:dataTable value="#{clienteController.cliente.contatos}" var="contato" id="tableContatos">
+                <h:column>
+                    <h:outputText value="#{contato.descricao}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton action="#{clienteController.removerContato(contato)}" value="-">
+                        <f:ajax render="formCliente:tableContatos"/>
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
 
             <h:dataTable value="#{clienteController.clientes}" var="cliente" id="tableClientes">
                 <h:column>

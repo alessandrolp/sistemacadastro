@@ -1,6 +1,7 @@
 package br.com.sistema.controller;
 
 import br.com.sistema.model.Cliente;
+import br.com.sistema.model.Contato;
 import br.com.sistema.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,6 +24,8 @@ public class ClienteController {
     private Cliente cliente = new Cliente();
 
     private List<Cliente> clientes;
+
+    private Contato contato = new Contato();
 
     private boolean modoEdicao = false;
 
@@ -55,6 +58,16 @@ public class ClienteController {
         setModoEdicao(false);
     }
 
+    public void adicionarContato(){
+        contato.setCliente(cliente);
+        cliente.getContatos().add(contato);
+        contato = new Contato();
+    }
+
+    public void removerContato(Contato contato){
+        cliente.getContatos().remove(contato);
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -77,5 +90,13 @@ public class ClienteController {
 
     public void setModoEdicao(boolean modoEdicao) {
         this.modoEdicao = modoEdicao;
+    }
+
+    public Contato getContato() {
+        return contato;
+    }
+
+    public void setContato(Contato contato) {
+        this.contato = contato;
     }
 }
