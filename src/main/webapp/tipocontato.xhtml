@@ -1,0 +1,37 @@
+<ui:composition template="template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+
+        <h1>Cadastro de Tipos de Contato</h1>
+
+        <h:form id="formTipoContato">
+            Descrição:
+            <h:inputText value="#{tipoContatoController.tipoContato.descricao}"/>
+            <h:commandButton value="Salvar" action="#{tipoContatoController.salvar}">
+                <f:ajax execute="formTipoContato" render="formTipoContato"/>
+            </h:commandButton>
+            <h:commandButton value="Cancelar" rendered="#{tipoContatoController.modoEdicao}" action="#{tipoContatoController.cancelar}">
+                <f:ajax render="formTipoContato"/>
+            </h:commandButton>
+
+            <h:dataTable value="#{tipoContatoController.tipoContatos}" var="tipoContato">
+                <h:column>
+                    <f:facet name="header">ID:</f:facet>
+                    <h:outputText value="#{tipoContato.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Descrição:</f:facet>
+                    <h:outputText value="#{tipoContato.descricao}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Editar" action="#{tipoContatoController.editar(tipoContato)}"/>
+                    <h:commandButton value="Excluir" action="#{tipoContatoController.excluir(tipoContato)}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
